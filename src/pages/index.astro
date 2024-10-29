@@ -1,5 +1,6 @@
 ---
-
+const response = await fetch('https://api.openweathermap.org/data/2.5/weather?lat=15.8700&lon=100.9925&appid=aa5b914859144400c974e6d5e70ca298&units=metric');
+const weatherData = await response.json();
 ---
 
 <html lang="en">
@@ -10,7 +11,20 @@
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
+	
+	<body class = "p-6 grid gap-6">
+		<h1 class = "text-3xl font-bold text-teal-400">Astro API DEMO</h1>
+		<p class = "font-semibold">Thailand Weather</p>
+		<div>
+			<ul class = "center p-4 rounded-sm border-2 max-w-fit">
+				<li><strong>Temperature</strong>: {weatherData.main.temp} °C</li>
+				<li><strong>Weather</strong>: {weatherData.weather[0].main}</li>
+				<li><strong>Pressure</strong>: {weatherData.main.pressure}Pa</li>
+				<li><strong>Humidity</strong>: {weatherData.main.humidity}%</li>
+				<li><strong>Wind Speed</strong>: {weatherData.wind.speed} m/s</li>
+			</ul>
+		</div>
+		
+
 	</body>
 </html>
